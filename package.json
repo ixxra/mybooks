@@ -1,0 +1,12 @@
+{
+  "name": "mybooks",
+  "version": "1.0.0",
+  "description": "My books database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scan": "./bin/scan"
+  },
+  "author": "",
+  "license": "ISC"
+}

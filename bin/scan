@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BOOKS="${HOME}/Libros"
+
+find "${BOOKS}" -type f -exec node src/scan.js {} +
