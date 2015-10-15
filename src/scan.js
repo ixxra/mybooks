@@ -2,17 +2,18 @@ var fs = require('fs');
 var path = require('path');
 
 function parseFile(f){
-    var fname = path.basename(f);
+    var parsed =  path.parse(f);
+
     return {
-      fname: f,
-      keywords: 
-        fname.split(/[^A-Za-z0-9]/).filter(function (word) {
+      location: f,
+      name: parsed.name.replace(/_+/g, ' ').trim(),
+      keywords:
+        parsed.base.toLowerCase().split(/[^A-Za-z0-9]/).filter(function (word) {
           return word.length > 0;
         })
-      
+
     };
 }
-
 
 function parse(err, files){
   if (err) throw err;
@@ -20,11 +21,11 @@ function parse(err, files){
   for (var f of files){
     console.log({
       fname: f,
-      keywords: 
+      keywords:
         f.split(/[^A-Za-z0-9]/).filter(function (word) {
           return word.length > 0;
         })
-      
+
     });
   }
 }

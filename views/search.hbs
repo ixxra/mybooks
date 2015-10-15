@@ -1,0 +1,29 @@
+<div class="container">
+  <header>
+    <h2>{{title}}</em></h2>
+    <h3>{{total}} results</h3>
+  </header>
+</div>
+<div class="container">
+  <form action="/search" method="get">
+    <div class="form-group">
+      <input type="search" placeholder="Search" name="q" class="form-control">
+    </div>
+  </form>
+</div>
+<div class="container">
+  {{#each books}}
+    <div class="row">
+      <div>
+        <a href="/books/{{_id}}?action=open" class="book-ref">{{name}}</a>
+      </div>
+      <div>
+        <small>Keywords:</small> {{#each keywords}}
+          <span><small><a href="/search?q={{this}}">{{this}}</a></small></span>
+        {{/each}}
+      </div>
+      <hr>
+    </div>
+  {{/each}}
+</div>
+<script type="text/javascript" src="/javascripts/search.js"></script>
