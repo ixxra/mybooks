@@ -14,13 +14,18 @@
 <div class="container">
   {{#each books}}
     <div class="row">
-      <div>
-        <a href="/books/{{_id}}?action=open" class="book-ref">{{name}}</a>
+      <div class="col-sm-4">
+        <img src="{{thumbnail}}"></img>
       </div>
-      <div>
-        <small>Keywords:</small> {{#each keywords}}
-          <span><small><a href="/search?q={{this}}">{{this}}</a></small></span>
-        {{/each}}
+      <div class="col-sm-8">
+        <div>
+          <a href="/books/{{_id}}?action=open" class="book-ref">{{name}}</a>
+        </div>
+        <div>
+          <small>Keywords:</small> {{#each keywords}}
+            <span><small><a href="/search?q={{this}}">{{this}}</a></small></span>
+          {{/each}}
+        </div>
       </div>
       <hr>
     </div>

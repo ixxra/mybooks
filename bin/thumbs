@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+var ps = 
+BOOKS="${HOME}/Libros"
+
+find "$BOOKS" -type f -exec md5sum {} + | while  read sum loc; do
+  echo "md5sum:$sum" "location: $loc"
+done
