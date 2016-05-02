@@ -2,15 +2,23 @@ var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var gulp = require('gulp');
 var path  = require('path');
-var ps = require('child_process');
+var app = require('./app');
+var startServer = require('./lib/server');
+var server = null;
 
-
-function startServer() {
-  ps.exec('npm start');
-}
-
-gulp.task('restart', function(){
-  startServer();
+gulp.task('startServer', function () {
+  if (server){
+    console.log('Restarting express');
+    server.close(function (err){
+      if (err){
+        console.log('Error:', err);
+      }
+      server = startServer(app());
+    });
+  } else {
+    console.log('Starting new server');
+    server = startServer(app());
+  }
 });
 
 gulp.task('less', function () {
@@ -31,6 +39,7 @@ gulp.task('watch', function(){
     //gulp.watch(['app.js', 'src/js/*', 'routes/**'], ['restart']);
     gulp.watch(['src/css/*'], ['less']);
     gulp.watch(['src/js/search.js'], ['search.js']);
+    gulp.watch(['routes/*.js', 'models/*.js'], ['startServer']);
 });
 
-gulp.task('default', ['less', 'watch']);
+gulp.task('default', ['less', 'startServer', 'watch']);
