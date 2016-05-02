@@ -21,6 +21,11 @@ gulp.task('startServer', function () {
   }
 });
 
+gulp.task('buildStylesheets', function () {
+  var builder = require('./lib/stylesheetBuilder');
+  builder();
+});
+
 gulp.task('less', function () {
   return gulp.src('./src/css/**/*.less')
     .pipe(less({
@@ -42,4 +47,4 @@ gulp.task('watch', function(){
     gulp.watch(['routes/*.js', 'models/*.js'], ['startServer']);
 });
 
-gulp.task('default', ['less', 'startServer', 'watch']);
+gulp.task('default', ['less', 'buildStylesheets', 'startServer', 'watch']);

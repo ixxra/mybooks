@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  
+  h2 Latest Books
+  
+  ul
+    for book in books
+      li 
+        div
+          div
+            a(href=book.url) #{book.name}
+          div keywords: 
+            for kw in book.keywords
+              span #{kw},
