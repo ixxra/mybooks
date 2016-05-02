@@ -9,4 +9,9 @@ block content
   ul
     for book in books
       li 
-        a(href=book.url) #{book.name}
+        div
+          div
+            a(href=book.url) #{book.name}
+          div keywords: 
+            for kw in book.keywords
+              span #{kw},
